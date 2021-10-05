@@ -14,14 +14,16 @@ import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { Inbox } from '@material-ui/icons';
-import { Mail } from '@material-ui/icons';
 import { SvgIcon } from '@mui/material';
 import { ReactComponent as Logo } from './images/logo.svg'
+import { Storage, Dashboard, CloudDownload, Restore, Info } from '@material-ui/icons';
+
 
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
+  color: 'white',
+  background: '#0F0F0F',
   width: drawerWidth,
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
@@ -31,6 +33,8 @@ const openedMixin = (theme) => ({
 });
 
 const closedMixin = (theme) => ({
+  color: 'white',
+  background: '#0F0F0F',
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -91,7 +95,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function NavBar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
+  const icons = [<Dashboard style={{fill:'white'}}/>, <Storage style={{fill:'white'}}/>, <CloudDownload style={{fill:'white'}} />
+  ,<Restore style={{fill:'white'}} />, <Info style={{fill:'white'}} />];
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -126,26 +131,15 @@ export default function NavBar() {
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRight /> : <ChevronLeft />}
+            {theme.direction === 'rtl' ? <ChevronRight style={{fill:'white'}} /> : <ChevronLeft style={{fill:'white'}}/>}
           </IconButton>
         </DrawerHeader>
-        <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Dashboard', 'Run Data', 'Live Telemetry', 'Recorded Telemetry', 'About'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
-                {index % 2 === 0 ? <Inbox /> : <Mail />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <Inbox /> : <Mail />}
+                {icons[index]}
+                {/* {index % 2 === 0 ? <Inbox style={{fill:'white'}} /> : <Mail style={{fill:'white'}}/>} */}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
