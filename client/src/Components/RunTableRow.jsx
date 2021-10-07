@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
@@ -56,7 +55,7 @@ function createIntervalRow(interval, testingDate, rootApiPath){
     var start = tConvert(startTime)
     var endTime = interval.end.slice(0, 8)
     var end = tConvert(endTime)
-    var apiLink = rootApiPath + testingDate + "/" + interval.start + '/' + interval.end + '/data.csv';
+    var apiLink = rootApiPath + '/' + testingDate + "/" + interval.start + '/' + interval.end + '/data.csv';
     return({
         intervalStart: start, 
         intervalEnd: end, 
