@@ -7,7 +7,6 @@ import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import { Menu } from '@material-ui/icons';
 import { ChevronLeft, ChevronRight } from '@material-ui/icons';
