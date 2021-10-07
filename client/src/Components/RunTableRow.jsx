@@ -30,6 +30,8 @@ function tConvert(time) {
     return time.join (''); // return adjusted time or original string
 }
 
+
+//Styling for the rows, names follow matching components unless otherwise specified 
 const useRowStyles =makeStyles(
     {root: {
         '& > *': {
@@ -39,6 +41,7 @@ const useRowStyles =makeStyles(
     }
 );
 
+//styling options for the dates
 const dateOptions = {
     weekday: 'short',
     year: 'numeric', 
@@ -47,6 +50,7 @@ const dateOptions = {
 }
 
 
+//Each run has a set of intervals this function breaks that interval down to the important data for display 
 function createIntervalRow(interval, testingDate, rootApiPath){
     var startTime = interval.start.slice(0,8) 
     var start = tConvert(startTime)
@@ -61,7 +65,7 @@ function createIntervalRow(interval, testingDate, rootApiPath){
     })
 }
 
-
+//A fragment of the run table that takes in the data for the current run and creates collapsing table row for all the run data
 export default function RunTableRow(props){
     const [isOpen, setIsOpen] = useState(false);
     var intervalRows = [];
@@ -89,6 +93,7 @@ export default function RunTableRow(props){
                 <TableCell>{start}</TableCell>
                 <TableCell>{end}</TableCell>
                 <TableCell>
+                {/* Button is using href to download files as of now. This may need to change in the future */}
                 <Button
                     variant="contained"
                     color="primary"

@@ -11,7 +11,8 @@ import Paper from '@material-ui/core/Paper';
 import RunTableRow from './RunTableRow';
 
 
-
+//makes api call to get all current runs and then breaks that down into tablecells using RunTableRow
+// This is more of a wrapper component for the fragments created by RunTableRow
 export default function RunTable (props){
     const [isLoaded, setIsLoaded] = useState(null);
     const [runData, setRunData] = useState(null);
