@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
+import { makeStyles } from '@material-ui/core';
 import RunTableRow from './RunTableRow';
 
 //makes api call to get all current runs and then breaks that down into tablecells using RunTableRow
@@ -23,7 +23,8 @@ export default function RunTable (props){
                     .then(
                         (result) =>{
                             setIsLoaded(true);
-                            if(result !== Array){
+                            console.log(Array.isArray(result));
+                            if(!Array.isArray(result)){
                                 const runArray = [];
                                 runArray.push(result);
                                 setRunData(runArray);
@@ -44,8 +45,6 @@ export default function RunTable (props){
         return <div>Did not load</div>
     }
     else{
-        
-        console.log(runData)
         return (
             <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">

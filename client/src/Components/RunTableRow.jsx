@@ -95,7 +95,6 @@ export default function RunTableRow(props){
                     variant="contained"
                     color="primary"
                     size="small"
-                    className={classes.button}
                     startIcon={<GetAppIcon />}
                     href={apiLink}
                 >
