@@ -91,7 +91,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 
-export default function NavBar() {
+export default function NavBar(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const icons = [<Dashboard style={{fill:'white'}}/>, <Storage style={{fill:'white'}}/>, <CloudDownload style={{fill:'white'}} />
