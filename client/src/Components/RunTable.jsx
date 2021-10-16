@@ -10,7 +10,6 @@ import Paper from '@material-ui/core/Paper';
 
 import RunTableRow from './RunTableRow';
 
-
 //makes api call to get all current runs and then breaks that down into tablecells using RunTableRow
 // This is more of a wrapper component for the fragments created by RunTableRow
 export default function RunTable (props){
@@ -55,7 +54,7 @@ export default function RunTable (props){
                 </TableHead>
                 <TableBody>
                     {runData.map((row) => (
-                        <RunTableRow run={row} rootApiPath={props.rootApiPath}/>
+                        <RunTableRow key={crypto.randomUUID()} run={row} rootApiPath={props.rootApiPath}/>
                     ))}
                 </TableBody>
                 </Table>

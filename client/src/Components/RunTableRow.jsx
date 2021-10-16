@@ -15,7 +15,6 @@ import IconButton from '@material-ui/core/IconButton';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import Button from '@material-ui/core/Button';
 
-
 function tConvert(time) {
     // Check correct time format and split into components
     time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
@@ -121,8 +120,8 @@ export default function RunTableRow(props){
                                 </TableRow>  
                             </TableHead>
                             <TableBody>
-                                {intervalRows.map((interval) =>(
-                                <TableRow>
+                                {intervalRows.map((interval, index) =>(
+                                <TableRow key={crypto.randomUUID()}>
                                     <TableCell component="th" scope="row">{interval.intervalDescription}</TableCell>
                                     <TableCell>{interval.intervalStart}</TableCell>
                                     <TableCell>{interval.intervalEnd}</TableCell>
