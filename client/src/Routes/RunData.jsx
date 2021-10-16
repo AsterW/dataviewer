@@ -4,7 +4,7 @@ import NavBar from '../Components/NavBar';
 import { Box } from '@mui/system';
 
 
-const rootApiPath = "https://data.washuracing.com/api/v2/testing"
+const rootApiPath = "https://data.washuracing.com/api/v2/testing/2019-11-24"
 function RunData() {
   return (
     <Box className="page">

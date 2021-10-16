@@ -23,7 +23,13 @@ export default function RunTable (props){
                     .then(
                         (result) =>{
                             setIsLoaded(true);
-                            setRunData(result);
+                            if(result !== Array){
+                                const runArray = [];
+                                runArray.push(result);
+                                setRunData(runArray);
+                            }else{
+                                setRunData(result);
+                            }
                         },
                     (error) => {
                         setIsLoaded(true);
@@ -38,6 +44,7 @@ export default function RunTable (props){
         return <div>Did not load</div>
     }
     else{
+        
         console.log(runData)
         return (
             <TableContainer component={Paper}>
