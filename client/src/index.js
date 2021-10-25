@@ -12,7 +12,7 @@ const routs = (
         <Route path="/runData" component={RunData}/>
         <Route path="/liveTelemetry" component={App}/>
         <Route path="/recordedTelemetry" component={RunData}/>
-        <Route path="/about" component={App}/>
+        <Route path="/about" component={App}/>]
       </div>
    </Router>
 );
