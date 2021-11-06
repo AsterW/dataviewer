@@ -9,8 +9,8 @@ function RunData() {
   return (
     <Box className="page">
       <NavBar></NavBar>
-      <Box style={{marginTop: 80, marginLeft:80}} className="runData">
-        <RunTable rootApiPath={rootApiPath}/>
+      <Box style={{ marginTop: 80, marginLeft: 80 }} className="runData">
+        <RunTable rootApiPath={rootApiPath} />
       </Box>
     </Box>
   );

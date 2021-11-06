@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useHistory } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -90,12 +91,20 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+const routeTexts = {
+  "Run Data": 'rundata',
+  "Live Telemetry": 'liveTelemetry',
+  'Recorded Telemetry': 'recordedTelemetry',
+  'About': 'about'
+}
+
 
 export default function NavBar(props) {
+  const history = useHistory();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const icons = [<Dashboard style={{fill:'white'}}/>, <Storage style={{fill:'white'}}/>, <CloudDownload style={{fill:'white'}} />
-  ,<Restore style={{fill:'white'}} />, <Info style={{fill:'white'}} />];
+  const icons = [<Dashboard style={{ fill: 'white' }} />, <Storage style={{ fill: 'white' }} />, <CloudDownload style={{ fill: 'white' }} />
+    , <Restore style={{ fill: 'white' }} />, <Info style={{ fill: 'white' }} />];
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -119,10 +128,10 @@ export default function NavBar(props) {
               ...(open && { display: 'none' }),
             }}
           >
-        <Menu />
+            <Menu />
           </IconButton>
-          <SvgIcon component={Logo} style={{paddingTop: 15, paddingRight: 10, fontSize:60, scale:'125%'}}  viewBox="0 0 600 476.6"></SvgIcon>
-          <Typography style={{paddingLeft: 15}} variant="h6" noWrap component="div">
+          <SvgIcon component={Logo} style={{ paddingTop: 15, paddingRight: 10, fontSize: 60, scale: '125%' }} viewBox="0 0 600 476.6"></SvgIcon>
+          <Typography style={{ paddingLeft: 15 }} variant="h6" noWrap component="div">
             Data Viewer
           </Typography>
         </Toolbar>
@@ -130,12 +139,14 @@ export default function NavBar(props) {
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRight style={{fill:'white'}} /> : <ChevronLeft style={{fill:'white'}}/>}
+            {theme.direction === 'rtl' ? <ChevronRight style={{ fill: 'white' }} /> : <ChevronLeft style={{ fill: 'white' }} />}
           </IconButton>
         </DrawerHeader>
         <List>
           {['Dashboard', 'Run Data', 'Live Telemetry', 'Recorded Telemetry', 'About'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button key={text} onClick={() => {
+              history.push("/" + routeTexts[text]);
+            }}>
               <ListItemIcon>
                 {icons[index]}
                 {/* {index % 2 === 0 ? <Inbox style={{fill:'white'}} /> : <Mail style={{fill:'white'}}/>} */}
