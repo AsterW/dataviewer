@@ -1,5 +1,3 @@
-import { Rotate90DegreesCcw } from "@material-ui/icons";
-
 const styles = {
   container: {
     display: "flex",
@@ -14,6 +12,7 @@ const styles = {
   },
 
   innerContainer: {
+    color: "#CC9F07",
     display: "flex",
     flexDirection: "column",
     flex: 5,
@@ -30,14 +29,28 @@ const styles = {
     alignItems: "center",
   },
 
-  rpm: {
-    backgroundColor: "#2B2B2B",
+  rpmContainer: {
+    color: "#CC9F07",
+    backgroundColor: "red",
     width: "90%",
     height: "12%",
     marginTop: 20,
     borderColor: "#CC9F07",
     borderWidth: 2,
     borderStyle: "solid",
+  },
+
+  rpmStyle: {
+    backgroundColor: "#2B2B2B",
+    width: "93%",
+    height: "100%",
+  },
+
+  blockTitle: {
+    position: "absolute",
+    top: -10,
+    color: "#C8C8C8",
+    fontSize: 24,
   },
 
   centerDisplay: {
@@ -61,11 +74,21 @@ const styles = {
   centerLeftBlock: {
     width: "40%",
     height: "35%",
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "center",
+    color: "#C8C8C8",
+    alignItems: "center",
+    fontSize: 60,
+    justifyContent: "center",
     marginLeft: 10,
     marginRight: 10,
+    textAlign: "center",
     backgroundColor: "#2B2B2B",
     borderColor: "#C8C8C8",
     borderTop: 0,
+    borderTopColor: "#2B2B2B",
     borderWidth: 5,
     borderStyle: "solid",
   },
@@ -81,6 +104,12 @@ const styles = {
   centerCenterBlock: {
     width: "90%",
     height: "85%",
+    display: "flex",
+    textAlign: "center",
+    color: "#C8C8C8",
+    alignItems: "center",
+    fontSize: 240,
+    justifyContent: "center",
     backgroundColor: "#2B2B2B",
     borderColor: "#C8C8C8",
     borderWidth: 5,
@@ -102,9 +131,17 @@ const styles = {
     height: "35%",
     marginLeft: 10,
     marginRight: 10,
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "center",
+    color: "#C8C8C8",
+    alignItems: "center",
+    fontSize: 60,
+    justifyContent: "center",
     backgroundColor: "#2B2B2B",
     borderColor: "#C8C8C8",
-    borderTop: 0,
+    borderTopColor: "#2B2B2B",
     borderWidth: 5,
     borderStyle: "solid",
   },
@@ -118,16 +155,76 @@ const styles = {
   },
 
   bottomFirst: {
-    flex: 1.5,
-    borderColor: "#CC9F07",
-    borderWidth: 2,
+    flex: 1.4,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  bottomFirstBlock: {
+    width: "90%",
+    height: "60%",
+    position: "relative",
+    marginTop: 10,
+    marginBottom: 10,
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "center",
+    color: "#C8C8C8",
+    alignItems: "center",
+    fontSize: 60,
+    justifyContent: "center",
+    backgroundColor: "#2B2B2B",
+    borderColor: "#C8C8C8",
+    borderTop: 0,
+    borderTopColor: "#2B2B2B",
+    borderWidth: 5,
     borderStyle: "solid",
+  },
+
+  bottomFirstProgressBox: {
+    position: "absolute",
+    display: "flex",
+    alignItems: "center",
+    top: "50%",
+    marginTop: "10%",
+    width: "50%",
+    height: "50%",
+    transform: "rotate(-90deg)",
+  },
+
+  bottomFirstProgress: {
+    width: "100%",
+    height: "100%",
   },
 
   bottomSecond: {
     flex: 1,
-    borderColor: "#CC9F07",
-    borderWidth: 2,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  bottomSecondBlock: {
+    position: "relative",
+    width: "80%",
+    height: "40%",
+    marginTop: 10,
+    marginBottom: 10,
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "center",
+    color: "#C8C8C8",
+    alignItems: "center",
+    fontSize: 60,
+    justifyContent: "center",
+    backgroundColor: "#2B2B2B",
+    borderColor: "#C8C8C8",
+    borderTop: 0,
+    borderTopColor: "#2B2B2B",
+    borderWidth: 5,
     borderStyle: "solid",
   },
 
@@ -145,7 +242,7 @@ const styles = {
 
   bottomLowerImage: {
     width: "30%",
-    marginTop: 15,
+    backgroundImage: "url(./home.png)",
     alignSelf: "center",
   },
 
@@ -154,14 +251,26 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    alignItems: "center",
+    position: "relative",
   },
 
   bottomFourthImage: {
     width: "80%",
+    position: "absolute",
+  },
+
+  gForceDot: {
+    width: "10%",
+    height: "10%",
+    borderRadius: "50%",
     alignSelf: "center",
+    backgroundColor: "red",
+    position: "absolute",
   },
 
   bottomFifth: {
+    color: "#CC9F07",
     flex: 0.625,
     boxSizing: "border-box",
     display: "flex",
@@ -169,12 +278,19 @@ const styles = {
     maxWidth: 100,
   },
 
+  bottomFifthTitle: {
+    color: "#C8C8C8",
+    fontSize: 24,
+    position: "absolute",
+    bottom: "8%",
+  },
+
   brake: {
     minWidth: 200,
     alignSelf: "center",
     backgroundColor: "#2B2B2B",
     borderColor: "#C8C8C8",
-    borderWidth: 2,
+    borderWidth: 3,
     borderStyle: "solid",
   },
 
@@ -183,7 +299,7 @@ const styles = {
     alignSelf: "center",
     backgroundColor: "#2B2B2B",
     borderColor: "#C8C8C8",
-    borderWidth: 2,
+    borderWidth: 3,
     borderStyle: "solid",
   },
 };
