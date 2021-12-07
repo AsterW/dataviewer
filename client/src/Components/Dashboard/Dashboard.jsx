@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import { Box } from "@mui/system";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -26,26 +25,90 @@ const Dashboard = () => {
   const [lap, setLap] = useState(1);
   const [brakePosition, setBrakePosition] = useState(100);
   const [gasPosition, setGasPosition] = useState(0);
+  const [gForceX, setGForceX] = useState(0);
+  const [gForceY, setGForceY] = useState(0);
+  const [gForceXBuffer, setGForceXBuffer] = useState([0, 0, 0, 0, 0]);
+  const [gForceYBuffer, setGForceYBuffer] = useState([0, 0, 0, 0, 0]);
+  let counter = 0;
+  let time = 0;
+  let lastTime = 0;
 
   useEffect(() => {
-    mockData.forEach((data, index) => {
-      setTimeout(() => {
-        setRPM(data.rpm);
-        setGear(data.gear);
-        setLapTime(data.lapTime);
-        setTotalTime(data.totalTime);
-        setBrakeTempFrontLeft(data.brakeTempFrontLeft);
-        setBrakeTempFrontRight(data.brakeTempFrontRight);
-        setBrakeTempRearLeft(data.brakeTempRearLeft);
-        setBrakeTempRearRight(data.brakeTempRearRight);
-        setWaterTemp(data.waterTemp);
-        setSpeed(data.speed);
-        setLap(data.lap);
-        setBrakePosition(data.brakePosition);
-        setGasPosition(data.gasPosition);
-      }, 200 * (index + 1));
+    updateTimer();
+  }, []);
+
+  useEffect(() => {
+    const AWSIoTData = require("aws-iot-device-sdk");
+
+    const client = AWSIoTData.device({
+      region: "us-west-2",
+      host: "agimxrztttugm-ats.iot.us-west-2.amazonaws.com",
+      protocol: "wss",
+      maximumReconnectTimeMs: 5000,
+      debug: true,
+      accessKeyId: "AKIAYOIJN7I3YUHI4JJO",
+      secretKey: "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",
+    });
+
+    client.on("connect", function () {
+      console.log("Connected");
+      client.subscribe("telemetry/decodedData");
+    });
+
+    client.on("error", function (err) {
+      console.log("Error", err);
+    });
+
+    client.on("message", function (topic, payload) {
+      const msg = JSON.parse(payload.toString());
+      // gForceXBuffer.shift();
+      // gForceXBuffer.push(msg.SBFront1_FLaccelX);
+      // gForceYBuffer.shift();
+      // gForceYBuffer.push(msg.SBFront1_FLaccelY);
+      // const thisY = (eval(gForceYBuffer.join("+")) / 5) * 20;
+      if (time > lastTime) {
+        const thisX = msg.SBFront1_FLaccelX * 20 * 3;
+        const thisY = msg.SBFront1_FLaccelY * 20 * 3;
+        console.log(time);
+        lastTime = time;
+        setGForceX(thisX);
+        setGForceY(thisY);
+      }
     });
   }, []);
+
+  const updateTimer = () => {
+    time += 1;
+    setTimeout(() => {
+      updateTimer();
+    }, 100);
+  };
+
+  // useEffect(() => {
+  //   if (!loopEnd) {
+  //     setLoopEnd(true);
+  //     mockData.forEach((data, index) => {
+  //       setTimeout(() => {
+  //         setRPM(data.rpm);
+  //         setGear(data.gear);
+  //         setLapTime(data.lapTime);
+  //         setTotalTime(data.totalTime);
+  //         setBrakeTempFrontLeft(data.brakeTempFrontLeft);
+  //         setBrakeTempFrontRight(data.brakeTempFrontRight);
+  //         setBrakeTempRearLeft(data.brakeTempRearLeft);
+  //         setBrakeTempRearRight(data.brakeTempRearRight);
+  //         setWaterTemp(data.waterTemp);
+  //         setSpeed(data.speed);
+  //         setLap(data.lap);
+  //         setBrakePosition(data.brakePosition);
+  //         setGasPosition(data.gasPosition);
+  //         if (index == mockData.length - 1) {
+  //           setLoopEnd(true);
+  //         }
+  //       }, 200 * (index + 1));
+  //     });
+  //   }
+  // }, [loopEnd]);
 
   const {
     container,
@@ -88,7 +151,6 @@ const Dashboard = () => {
             value={(rpm / 8300) * 100}
             color="inherit"
           />
-          {/* <Box style={rpmStop}></Box> */}
         </Box>
         <Box style={centerDisplay}>
           <Box style={centerLeft}>
@@ -175,7 +237,18 @@ const Dashboard = () => {
           </Box>
           <Box style={bottomFourth}>
             <img src={gForce} style={bottomFourthImage}></img>
-            <Box style={gForceDot}></Box>
+            <Box
+              style={{
+                width: "10%",
+                height: "10%",
+                borderRadius: "50%",
+                alignSelf: "center",
+                backgroundColor: "red",
+                position: "relative",
+                left: gForceX,
+                bottom: gForceY,
+              }}
+            ></Box>
           </Box>
           <Box style={bottomFifth}>
             <LinearProgress
